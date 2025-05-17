@@ -215,3 +215,30 @@ body {
         width: 100%;
     }
 }
+
+.loading-indicator {
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.game-complete {
+    text-align: center;
+}
+
+.game-complete h3 {
+    color: var(--correct-color);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.letter-tile.hint {
+    animation: hint-pulse 0.5s 4;
+}
+
+@keyframes hint-pulse {
+    0% { transform: scale(1); box-shadow: none; }
+    50% { transform: scale(1.1); box-shadow: 0 0 10px gold; }
+    100% { transform: scale(1); box-shadow: none; }
+}
