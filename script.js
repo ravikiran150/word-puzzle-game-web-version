@@ -115,7 +115,7 @@ function createLetterGrid(level) {
         tile.dataset.index = index;
         
         if (gameData.usedLetterIndices.includes(index)) {
-            tile.classList.add('used');
+            tile.style.display = 'none'; // Hide used letters
         }
         
         tile.addEventListener('click', () => selectLetter(tile, index, letter));
@@ -146,11 +146,13 @@ function selectLetter(tile, index, letter) {
     if (gameData.usedLetterIndices.includes(index)) return;
     
     if (gameData.selectedIndices.includes(index)) {
+        // Deselect
         tile.classList.remove('selected');
         const letterIndex = gameData.selectedIndices.indexOf(index);
         gameData.selectedLetters.splice(letterIndex, 1);
         gameData.selectedIndices.splice(letterIndex, 1);
     } else {
+        // Select
         tile.classList.add('selected');
         gameData.selectedLetters.push(letter);
         gameData.selectedIndices.push(index);
@@ -170,24 +172,39 @@ function checkWord() {
     if (matchedWord) {
         // Correct word
         gameData.foundWords.push(matchedWord.word);
-        gameData.usedLetterIndices = [...gameData.usedLetterIndices, ...gameData.selectedIndices];
         
-        // Visual feedback
+        // Animate and hide the selected letters
         gameData.selectedIndices.forEach(index => {
             const tile = document.querySelector(`.letter-tile[data-index="${index}"]`);
-            tile.classList.replace('selected', 'used');
+            
+            // Visual feedback
+            tile.classList.add('correct');
+            tile.classList.remove('selected');
+            
+            // Disappear animation
+            setTimeout(() => {
+                tile.style.transform = 'scale(0)';
+                tile.style.opacity = '0';
+                
+                // Mark as used after animation completes
+                setTimeout(() => {
+                    gameData.usedLetterIndices.push(index);
+                }, 300);
+            }, 500);
         });
         
         gameData.selectedLetters = [];
         gameData.selectedIndices = [];
         
+        // Update clue panel
         createCluePanel(currentLevel);
         
+        // Check if level is complete
         if (gameData.foundWords.length === currentLevel.words.length) {
-            setTimeout(() => showLevelComplete(currentLevel), 500);
+            setTimeout(() => showLevelComplete(currentLevel), 1000);
         }
     } else {
-        // Incorrect word
+        // Incorrect word - visual feedback
         gameData.selectedIndices.forEach(index => {
             const tile = document.querySelector(`.letter-tile[data-index="${index}"]`);
             tile.classList.add('incorrect');
