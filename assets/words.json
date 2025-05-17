@@ -1,0 +1,20 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "words": [
+        {"word": "DOG", "clue": "A loyal pet that barks", "definition": "A domesticated carnivorous mammal."},
+        {"word": "CAT", "clue": "Feline pet that purrs", "definition": "A small domesticated carnivorous mammal."},
+        {"word": "SUN", "clue": "Source of daylight", "definition": "The star around which the earth orbits."}
+      ]
+    },
+    {
+      "level": 2,
+      "words": [
+        {"word": "APPLE", "clue": "Fruit that keeps doctors away", "definition": "A sweet, red or green fruit."},
+        {"word": "BEACH", "clue": "Sandy shore by the ocean", "definition": "A pebbly or sandy shore by the ocean."},
+        {"word": "CLOUD", "clue": "Floats in the sky", "definition": "A visible mass of condensed water vapor."}
+      ]
+    }
+  ]
+}
