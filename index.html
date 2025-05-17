@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Puzzle Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>Word Puzzle</h1>
+            <div class="level-display">Level: <span id="current-level">1</span></div>
+        </header>
+
+        <div class="clue-panel" id="clue-panel">
+            <!-- Clues will be inserted here by JavaScript -->
+        </div>
+
+        <div class="letter-grid" id="letter-grid">
+            <!-- Letters will be inserted here by JavaScript -->
+        </div>
+
+        <div class="controls">
+            <button id="check-word" class="btn">Check Word</button>
+            <button id="reset-selection" class="btn">Reset</button>
+            <button id="hint-btn" class="btn hint-btn">Hint</button>
+        </div>
+    </div>
+
+    <!-- Level Complete Modal -->
+    <div class="modal" id="level-complete-modal">
+        <div class="modal-content">
+            <h2>Level Complete!</h2>
+            <div class="definitions" id="word-definitions">
+                <!-- Definitions will be inserted here -->
+            </div>
+            <div class="modal-buttons">
+                <button id="next-level-btn" class="btn primary">Next Level</button>
+                <button id="replay-btn" class="btn secondary">Replay</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
