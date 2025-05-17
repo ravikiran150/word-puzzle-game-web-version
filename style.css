@@ -242,3 +242,17 @@ body {
     50% { transform: scale(1.1); box-shadow: 0 0 10px gold; }
     100% { transform: scale(1); box-shadow: none; }
 }
+
+.letter-tile {
+    transition: all 0.3s ease;
+}
+
+.letter-tile.correct {
+    background-color: #4caf50 !important;
+    color: white;
+}
+
+.letter-tile.removing {
+    transform: scale(0);
+    opacity: 0;
+}
