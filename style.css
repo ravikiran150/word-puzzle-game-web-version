@@ -1,0 +1,217 @@
+:root {
+    --primary-color: #4a6fa5;
+    --secondary-color: #166088;
+    --correct-color: #4caf50;
+    --incorrect-color: #f44336;
+    --selected-color: #7fb2e9;
+    --used-color: #d1fae5;
+    --text-color: #333;
+    --light-text: #f8f9fa;
+    --background-color: #f5f5f5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.game-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.game-header h1 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.level-display {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.clue-panel {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.clue-item {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.clue-item.found {
+    color: var(--correct-color);
+    font-weight: bold;
+}
+
+.letter-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.letter-tile {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.letter-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.letter-tile.selected {
+    background-color: var(--selected-color);
+    border-color: var(--primary-color);
+}
+
+.letter-tile.used {
+    background-color: var(--used-color);
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.hint-btn {
+    background-color: #ff9800;
+}
+
+.hint-btn:hover {
+    background-color: #f57c00;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.definition-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.definition-item:last-child {
+    border-bottom: none;
+}
+
+.word-def {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.primary {
+    background-color: var(--correct-color);
+}
+
+.secondary {
+    background-color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .letter-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .controls {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
