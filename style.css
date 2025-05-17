@@ -233,16 +233,7 @@ body {
     margin-bottom: 10px;
 }
 
-.letter-tile.hint {
-    animation: hint-pulse 0.5s 4;
-}
-
-@keyframes hint-pulse {
-    0% { transform: scale(1); box-shadow: none; }
-    50% { transform: scale(1.1); box-shadow: 0 0 10px gold; }
-    100% { transform: scale(1); box-shadow: none; }
-}
-
+.letter-tile { transition: all 0.2s ease; } /* Reduced from 0.3s */
 .letter-tile {
     transition: all 0.3s ease;
 }
@@ -256,3 +247,15 @@ body {
     transform: scale(0);
     opacity: 0;
 }
+
+
+.letter-tile.hint {
+    animation: hint-pulse 0.5s 4;
+}
+
+@keyframes hint-pulse {
+    0% { transform: scale(1); box-shadow: none; }
+    50% { transform: scale(1.1); box-shadow: 0 0 10px gold; }
+    100% { transform: scale(1); box-shadow: none; }
+}
+
