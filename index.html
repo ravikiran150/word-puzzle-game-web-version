@@ -8,63 +8,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-   
     <!-- Start Screen -->
-<div id="start-screen" class="screen">
-    <div class="start-container">
-        <h1>Word Puzzle Game</h1>
-        <p>Form words from letters to complete each level!</p>
-        <button id="start-game-btn" class="btn primary">Start Game</button>
-    </div>
-</div>
-    
-
-<!-- Game Screen (initially hidden) -->
-<div id="game-screen" class="screen" style="display: none;">
-    <!-- Your existing game container goes here -->
-    <div class="game-container">
-        <!-- ... rest of your existing game HTML ... -->
-    </div>
-</div>
-    <div class="game-container">
-       <div class="game-header">
-    <h1>Word Puzzle</h1>
-    <div class="level-info">
-        <div class="level-display">Level: <span id="current-level">1</span></div>
-        <div class="timer">Time: <span id="timer">0</span>s</div>
-        <div class="star-rating">
-            <span class="star">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-        </div>
-    </div>
-</div>
-
-        <div class="clue-panel" id="clue-panel">
-            <!-- Clues will be inserted here by JavaScript -->
-        </div>
-
-        <div class="letter-grid" id="letter-grid">
-            <!-- Letters will be inserted here by JavaScript -->
-        </div>
-
-        <div class="controls">
-            <button id="check-word" class="btn">Check Word</button>
-            <button id="reset-selection" class="btn">Reset</button>
-            <button id="hint-btn" class="btn hint-btn">Hint</button>
-        </div>
-    </div>
-
-    <!-- Level Complete Modal -->
-    <div class="modal" id="level-complete-modal">
-        <div class="modal-content">
-            <h2>Level Complete!</h2>
-            <div class="definitions" id="word-definitions">
-                <!-- Definitions will be inserted here -->
+    <div id="start-screen" class="screen">
+        <div class="start-container">
+            <h1>Word Puzzle Game</h1>
+            <p>Form words from letters to complete each level!</p>
+            <div class="instructions">
+                <h3>How to Play:</h3>
+                <ol>
+                    <li>Select letters to form words matching the clues</li>
+                    <li>Click "Check Word" to submit your answer</li>
+                    <li>Complete all words to finish the level</li>
+                </ol>
             </div>
-            <div class="modal-buttons">
-                <button id="next-level-btn" class="btn primary">Next Level</button>
-                <button id="replay-btn" class="btn secondary">Replay</button>
+            <button id="start-game-btn" class="btn primary">Start Game</button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen" style="display: none;">
+        <div class="game-container">
+            <header class="game-header">
+                <h1>Word Puzzle</h1>
+                <div class="level-info">
+                    <div class="level-display">Level: <span id="current-level">1</span></div>
+                    <div class="timer">Time: <span id="timer">0</span>s</div>
+                    <div class="star-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="clue-panel" id="clue-panel"></div>
+
+            <div class="letter-grid" id="letter-grid"></div>
+
+            <div class="controls">
+                <button id="check-word" class="btn">Check Word</button>
+                <button id="reset-selection" class="btn">Reset</button>
+                <button id="hint-btn" class="btn hint-btn">Hint</button>
+            </div>
+        </div>
+
+        <!-- Level Complete Modal -->
+        <div class="modal" id="level-complete-modal">
+            <div class="modal-content">
+                <h2>Level Complete!</h2>
+                <div class="definitions" id="word-definitions"></div>
+                <div class="modal-buttons">
+                    <button id="next-level-btn" class="btn primary">Next Level</button>
+                    <button id="replay-btn" class="btn secondary">Replay</button>
+                </div>
             </div>
         </div>
     </div>
