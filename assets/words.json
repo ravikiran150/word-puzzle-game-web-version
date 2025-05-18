@@ -15,6 +15,84 @@
         {"word": "BEACH", "clue": "Sandy shore by the ocean", "definition": "A pebbly or sandy shore by the ocean."},
         {"word": "CLOUD", "clue": "Floats in the sky", "definition": "A visible mass of condensed water vapor."}
       ]
+    },
+    {
+      "level": 3,
+      "words": [
+        {"word": "TIGER", "clue": "Striped big cat", "definition": "A large Asian wild cat with a striped coat."},
+        {"word": "HONEY", "clue": "Sweet substance made by bees", "definition": "A sweet, sticky substance made by bees."},
+        {"word": "WATER", "clue": "Essential liquid for life", "definition": "A colorless, transparent liquid that forms the world's streams, lakes, and oceans."},
+        {"word": "GRASS", "clue": "Green ground cover", "definition": "Vegetation consisting of short plants with narrow leaves."}
+      ]
+    },
+    {
+      "level": 4,
+      "words": [
+        {"word": "BANANA", "clue": "Long yellow fruit", "definition": "A long curved fruit with a yellow skin."},
+        {"word": "JUNGLE", "clue": "Dense tropical forest", "definition": "A dense, tropical forest with lush vegetation."},
+        {"word": "POCKET", "clue": "Small compartment in clothing", "definition": "A small bag-like attachment in clothing."},
+        {"word": "ROCKET", "clue": "Space vehicle", "definition": "A cylindrical projectile that can be propelled to great heights."}
+      ]
+    },
+    {
+      "level": 5,
+      "words": [
+        {"word": "ELEPHANT", "clue": "Large gray mammal with trunk", "definition": "A very large herbivorous mammal with a trunk."},
+        {"word": "HOSPITAL", "clue": "Place for medical treatment", "definition": "An institution providing medical treatment."},
+        {"word": "BUTTERFLY", "clue": "Flying insect with colorful wings", "definition": "A nectar-feeding insect with large wings."},
+        {"word": "MOUNTAIN", "clue": "Tall natural elevation", "definition": "A large natural elevation of the earth's surface."}
+      ]
+    },
+    {
+      "level": 6,
+      "words": [
+        {"word": "ASTRONAUT", "clue": "Space traveler", "definition": "A person trained to travel in a spacecraft."},
+        {"word": "TELEPHONE", "clue": "Communication device", "definition": "A system for transmitting voices over a distance."},
+        {"word": "ADVENTURE", "clue": "Exciting experience", "definition": "An unusual and exciting experience."},
+        {"word": "NOTEBOOK", "clue": "Book for writing notes", "definition": "A small book with blank pages for writing."},
+        {"word": "SUNFLOWER", "clue": "Tall yellow flower", "definition": "A tall plant with large yellow flowers."}
+      ]
+    },
+    {
+      "level": 7,
+      "words": [
+        {"word": "PHOTOGRAPH", "clue": "Captured image", "definition": "A picture made using a camera."},
+        {"word": "CHOCOLATE", "clue": "Sweet brown treat", "definition": "A food preparation made from roasted cacao seeds."},
+        {"word": "KANGAROO", "clue": "Australian hopper", "definition": "A large Australian marsupial with powerful hind legs."},
+        {"word": "UMBRELLA", "clue": "Rain protection", "definition": "A device used for protection against rain."},
+        {"word": "LIBRARY", "clue": "Book collection place", "definition": "A building or room containing collections of books."}
+      ]
+    },
+    {
+      "level": 8,
+      "words": [
+        {"word": "ARCHITECTURE", "clue": "Building design", "definition": "The art of designing buildings."},
+        {"word": "COMMUNICATION", "clue": "Information exchange", "definition": "The imparting or exchanging of information."},
+        {"word": "EXPERIMENT", "clue": "Scientific test", "definition": "A scientific procedure to make a discovery."},
+        {"word": "GEOGRAPHY", "clue": "Study of Earth's features", "definition": "The study of Earth's physical features."},
+        {"word": "HIBERNATION", "clue": "Winter sleep", "definition": "The condition of passing winter in a dormant state."}
+      ]
+    },
+    {
+      "level": 9,
+      "words": [
+        {"word": "MAGNIFICENT", "clue": "Extremely beautiful", "definition": "Extremely beautiful or impressive."},
+        {"word": "NEIGHBORHOOD", "clue": "Local community area", "definition": "A district or community within a town or city."},
+        {"word": "PERSPECTIVE", "clue": "Point of view", "definition": "A particular attitude toward something."},
+        {"word": "QUINTESSENCE", "clue": "Perfect example", "definition": "The most perfect or typical example of a quality."},
+        {"word": "REVOLUTION", "clue": "Dramatic change", "definition": "A forcible overthrow of a government or social order."}
+      ]
+    },
+    {
+      "level": 10,
+      "words": [
+        {"word": "EXTRAORDINARY", "clue": "Very unusual", "definition": "Very unusual or remarkable."},
+        {"word": "CONSEQUENTIAL", "clue": "Important", "definition": "Following as a result or effect."},
+        {"word": "BIBLIOGRAPHY", "clue": "List of references", "definition": "A list of books referred to in a scholarly work."},
+        {"word": "CONSTELLATION", "clue": "Star pattern", "definition": "A group of stars forming a recognizable pattern."},
+        {"word": "DETERMINATION", "clue": "Firmness of purpose", "definition": "The quality of being determined."},
+        {"word": "PHILANTHROPY", "clue": "Charitable giving", "definition": "The desire to promote the welfare of others."}
+      ]
     }
   ]
 }
