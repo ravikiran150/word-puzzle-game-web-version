@@ -174,8 +174,8 @@ function calculateStarRating() {
     const wordCount = currentLevel.words.length;
     const averageTimePerWord = gameData.levelTime / wordCount;
     
-    if (averageTimePerWord <= 3.33) return 3;
-    if (averageTimePerWord <= 5) return 2;
+    if (averageTimePerWord <= 5) return 3;
+    if (averageTimePerWord <= 10) return 2;
     return 1;
 }
 
