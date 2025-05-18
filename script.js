@@ -34,6 +34,84 @@ const elements = {
     startGameBtn: document.getElementById('start-game-btn')
 };
 
+// Audio Elements
+const audio = {
+    backgroundMusic: document.getElementById('background-music'),
+    click: document.getElementById('click-sound'),
+    correct: document.getElementById('correct-sound'),
+    wrong: document.getElementById('wrong-sound'),
+    levelComplete: document.getElementById('level-complete-sound'),
+    isMusicOn: true
+};
+
+// Audio control functions
+function playSound(sound) {
+    if (audio.isMusicOn) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log("Audio play failed:", e));
+    }
+}
+
+function toggleMusic() {
+    audio.isMusicOn = !audio.isMusicOn;
+    const musicBtn = document.getElementById('music-toggle');
+    
+    if (audio.isMusicOn) {
+        audio.backgroundMusic.play();
+        musicBtn.innerHTML = '🔊';
+    } else {
+        audio.backgroundMusic.pause();
+        musicBtn.innerHTML = '🔇';
+    }
+}
+
+// Add music toggle button to start screen
+const musicControls = document.createElement('div');
+musicControls.className = 'music-controls';
+musicControls.innerHTML = `
+    <button id="music-toggle" class="music-btn">🔊</button>
+`;
+document.body.appendChild(musicControls);
+
+document.getElementById('music-toggle').addEventListener('click', toggleMusic);
+
+function selectLetter(tile, index, letter) {
+    playSound(audio.click);
+    // ... rest of the existing code ...
+}
+
+function checkWord() {
+    playSound(audio.click); // Play click sound when checking word
+    
+    // ... existing code ...
+    
+    if (matchedWord) {
+        playSound(audio.correct); // Play correct sound
+        // ... rest of correct word handling ...
+    } else {
+        playSound(audio.wrong); // Play wrong sound
+        // ... rest of wrong word handling ...
+    }
+}
+
+function showLevelComplete(level) {
+    playSound(audio.levelComplete);
+    // ... rest of the existing code ...
+}
+
+function startLevelTimer() {
+    // Start background music (with user gesture)
+    if (audio.isMusicOn) {
+        audio.backgroundMusic.play().catch(e => console.log("Music play failed:", e));
+    }
+    // ... rest of existing code ...
+}
+
+audio.backgroundMusic.volume = 0.3;
+audio.click.volume = 0.7;
+audio.correct.volume = 0.7;
+// etc...
+
 // Initialize loading indicator
 elements.loadingIndicator.className = 'loading-indicator';
 elements.loadingIndicator.textContent = 'Loading game data...';
@@ -51,6 +129,38 @@ function startLevelTimer() {
     }, 1000);
 }
 
+// Add this after your audio variable declarations
+function initAudio() {
+    // Set initial volumes
+    audio.backgroundMusic.volume = 0.3;
+    audio.click.volume = 0.7;
+    audio.correct.volume = 0.7;
+    audio.wrong.volume = 0.7;
+    audio.levelComplete.volume = 0.8;
+    
+    // Add volume control
+    const volumeControl = document.createElement('input');
+    volumeControl.type = 'range';
+    volumeControl.min = '0';
+    volumeControl.max = '1';
+    volumeControl.step = '0.1';
+    volumeControl.value = '0.7';
+    volumeControl.style.width = '80px';
+    volumeControl.style.marginLeft = '10px';
+    volumeControl.addEventListener('input', (e) => {
+        const volume = parseFloat(e.target.value);
+        audio.click.volume = volume;
+        audio.correct.volume = volume;
+        audio.wrong.volume = volume;
+        audio.levelComplete.volume = volume;
+    });
+    
+    const musicControls = document.querySelector('.music-controls');
+    musicControls.appendChild(volumeControl);
+}
+
+// Call this in your loadGameData function
+initAudio();
 function stopLevelTimer() {
     if (gameData.timerInterval) {
         clearInterval(gameData.timerInterval);
