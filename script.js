@@ -16,6 +16,8 @@ const gameData = {
 
 // DOM Elements
 const elements = {
+    startScreen: document.getElementById('start-screen'),
+    gameScreen: document.getElementById('game-screen'),
     letterGrid: document.getElementById('letter-grid'),
     cluePanel: document.getElementById('clue-panel'),
     currentLevelDisplay: document.getElementById('current-level'),
@@ -28,19 +30,10 @@ const elements = {
     replayBtn: document.getElementById('replay-btn'),
     loadingIndicator: document.createElement('div'),
     timerDisplay: document.getElementById('timer'),
-    starRatingDisplay: document.querySelector('.star-rating')
-    startScreen: document.getElementById('start-screen'),
-    gameScreen: document.getElementById('game-screen'),
+    starRatingDisplay: document.querySelector('.star-rating'),
     startGameBtn: document.getElementById('start-game-btn')
 };
 
-
-// Start game button
-elements.startGameBtn.addEventListener('click', () => {
-    elements.startScreen.style.display = 'none';
-    elements.gameScreen.style.display = 'block';
-    loadGameData(); // Now we load game data only after clicking start
-});
 // Initialize loading indicator
 elements.loadingIndicator.className = 'loading-indicator';
 elements.loadingIndicator.textContent = 'Loading game data...';
@@ -367,5 +360,9 @@ elements.replayBtn.addEventListener('click', () => {
     initGame();
 });
 
-// Start the game by loading data
-//loadGameData();
+// Start game button
+elements.startGameBtn.addEventListener('click', () => {
+    elements.startScreen.style.display = 'none';
+    elements.gameScreen.style.display = 'block';
+    loadGameData();
+});
