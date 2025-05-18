@@ -252,6 +252,41 @@ body {
 .letter-tile.hint {
     animation: hint-pulse 0.5s 4;
 }
+/* Timer and Stars */
+.level-info {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.timer {
+    font-weight: 600;
+    color: #333;
+}
+
+.star-rating {
+    color: #ccc;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.star-rating .star.filled {
+    color: gold;
+    text-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+/* Modal Star Display */
+.modal-stars {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 32px;
+}
+
+.modal-stars .star {
+    margin: 0 5px;
+}
 
 @keyframes hint-pulse {
     0% { transform: scale(1); box-shadow: none; }
