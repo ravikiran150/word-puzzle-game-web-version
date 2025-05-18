@@ -6,7 +6,11 @@ const gameData = {
     selectedIndices: [],
     foundWords: [],
     usedLetterIndices: [],
-    isLoading: true
+    isLoading: true,
+    levelStartTime: 0,
+    levelTime: 0,
+    starRating: 0,
+    levelTimings: []
 };
 
 // DOM Elements
@@ -303,6 +307,39 @@ elements.replayBtn.addEventListener('click', () => {
     elements.levelCompleteModal.style.display = 'none';
     initGame();
 });
+
+// Timer functions
+function startLevelTimer() {
+    gameData.levelStartTime = Date.now();
+    gameData.levelTime = 0;
+    updateTimerDisplay();
+}
+
+function updateTimerDisplay() {
+    if (gameData.levelStartTime) {
+        gameData.levelTime = Math.floor((Date.now() - gameData.levelStartTime) / 1000);
+        document.getElementById('timer').textContent = gameData.levelTime;
+    }
+    requestAnimationFrame(updateTimerDisplay);
+}
+
+// Star rating calculation
+function calculateStarRating() {
+    const currentLevel = gameData.levels[gameData.currentLevel];
+    const wordCount = currentLevel.words.length;
+    const averageTimePerWord = gameData.levelTime / wordCount;
+    
+    if (averageTimePerWord <= 3.33) return 3;
+    if (averageTimePerWord <= 5) return 2;
+    return 1;
+}
+
+function updateStarDisplay(rating) {
+    const stars = document.querySelectorAll('.star-rating .star');
+    stars.forEach((star, index) => {
+        star.classList.toggle('filled', index < rating);
+    });
+}
 
 // Start the game by loading data
 loadGameData();
