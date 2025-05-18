@@ -29,8 +29,18 @@ const elements = {
     loadingIndicator: document.createElement('div'),
     timerDisplay: document.getElementById('timer'),
     starRatingDisplay: document.querySelector('.star-rating')
+    startScreen: document.getElementById('start-screen'),
+    gameScreen: document.getElementById('game-screen'),
+    startGameBtn: document.getElementById('start-game-btn')
 };
 
+
+// Start game button
+elements.startGameBtn.addEventListener('click', () => {
+    elements.startScreen.style.display = 'none';
+    elements.gameScreen.style.display = 'block';
+    loadGameData(); // Now we load game data only after clicking start
+});
 // Initialize loading indicator
 elements.loadingIndicator.className = 'loading-indicator';
 elements.loadingIndicator.textContent = 'Loading game data...';
@@ -358,4 +368,4 @@ elements.replayBtn.addEventListener('click', () => {
 });
 
 // Start the game by loading data
-loadGameData();
+//loadGameData();
