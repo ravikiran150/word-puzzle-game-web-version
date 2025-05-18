@@ -332,6 +332,15 @@ body {
     margin: 0 5px;
 }
 
+<div class="difficulty-selector">
+    <h3>Select Difficulty:</h3>
+    <select id="difficulty">
+        <option value="easy">Easy (3-4 letter words)</option>
+        <option value="medium">Medium (5-6 letter words)</option>
+        <option value="hard">Hard (7+ letter words)</option>
+    </select>
+</div>
+
 @keyframes hint-pulse {
     0% { transform: scale(1); box-shadow: none; }
     50% { transform: scale(1.1); box-shadow: 0 0 10px gold; }
