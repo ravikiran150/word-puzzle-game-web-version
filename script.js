@@ -261,8 +261,15 @@ function loadLevel(levelIndex) {
 }
 
 // Create the letter grid
+// In your createLetterGrid function, add this:
 function createLetterGrid(level) {
     elements.letterGrid.innerHTML = '';
+    
+    // Calculate optimal columns based on word length
+    const longestWord = Math.max(...level.words.map(w => w.word.length));
+    const columns = longestWord > 6 ? 6 : 5;
+    
+    elements.letterGrid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
     
     const allLetters = level.words
         .flatMap(wordObj => wordObj.word.split(''))
