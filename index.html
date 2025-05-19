@@ -23,32 +23,40 @@
             </div>
             <button id="start-game-btn" class="btn primary">Start Game</button>
         </div>
+        <div class="music-controls">
+            <button id="music-toggle" class="music-btn">🔊</button>
+            <input type="range" min="0" max="1" step="0.1" value="0.7" class="volume-control">
+        </div>
     </div>
 
     <!-- Game Screen -->
     <div id="game-screen" class="screen" style="display: none;">
-        <div class="game-container">
-            <header class="game-header">
-                <h1>Word Puzzle</h1>
-                <div class="level-info">
-                    <div class="level-display">Level: <span id="current-level">1</span></div>
-                    <div class="timer">Time: <span id="timer">0</span>s</div>
-                    <div class="star-rating">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
+        <div class="game-screen-container">
+            <div class="game-content">
+                <header class="game-header">
+                    <h1>Word Puzzle</h1>
+                    <div class="level-info">
+                        <div class="level-display">Level: <span id="current-level">1</span></div>
+                        <div class="timer">Time: <span id="timer">0</span>s</div>
+                        <div class="star-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
                     </div>
+                </header>
+
+                <div class="clue-panel" id="clue-panel"></div>
+
+                <div class="letter-grid" id="letter-grid"></div>
+            </div>
+
+            <div class="game-footer">
+                <div class="controls">
+                    <button id="check-word" class="btn">Check Word</button>
+                    <button id="reset-selection" class="btn">Reset</button>
+                    <button id="hint-btn" class="btn hint-btn">Hint</button>
                 </div>
-            </header>
-
-            <div class="clue-panel" id="clue-panel"></div>
-
-            <div class="letter-grid" id="letter-grid"></div>
-
-            <div class="controls">
-                <button id="check-word" class="btn">Check Word</button>
-                <button id="reset-selection" class="btn">Reset</button>
-                <button id="hint-btn" class="btn hint-btn">Hint</button>
             </div>
         </div>
 
@@ -64,22 +72,23 @@
             </div>
         </div>
     </div>
-    <!-- Add this before the closing </body> tag -->
-<audio id="background-music" loop>
-    <source src="assets/sounds/background.mp3" type="audio/mpeg">
-</audio>
-<audio id="click-sound">
-    <source src="assets/sounds/click.mp3" type="audio/mpeg">
-</audio>
-<audio id="correct-sound">
-    <source src="assets/sounds/correct.mp3" type="audio/mpeg">
-</audio>
-<audio id="wrong-sound">
-    <source src="assets/sounds/wrong.mp3" type="audio/mpeg">
-</audio>
-<audio id="level-complete-sound">
-    <source src="assets/sounds/level-complete.mp3" type="audio/mpeg">
-</audio>
+
+    <!-- Audio Elements -->
+    <audio id="background-music" loop>
+        <source src="assets/sounds/background.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="click-sound">
+        <source src="assets/sounds/click.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="correct-sound">
+        <source src="assets/sounds/correct.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="wrong-sound">
+        <source src="assets/sounds/wrong.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="level-complete-sound">
+        <source src="assets/sounds/level-complete.mp3" type="audio/mpeg">
+    </audio>
 
     <script src="script.js"></script>
 </body>
