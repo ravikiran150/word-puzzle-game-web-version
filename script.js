@@ -31,7 +31,9 @@ const elements = {
     loadingIndicator: document.createElement('div'),
     timerDisplay: document.getElementById('timer'),
     starRatingDisplay: document.querySelector('.star-rating'),
-    startGameBtn: document.getElementById('start-game-btn')
+    startGameBtn: document.getElementById('start-game-btn'),
+    musicToggle: document.getElementById('music-toggle'),
+    volumeControl: document.querySelector('.volume-control')
 };
 
 // Audio Elements
@@ -44,6 +46,28 @@ const audio = {
     isMusicOn: true
 };
 
+// Initialize loading indicator
+elements.loadingIndicator.className = 'loading-indicator';
+elements.loadingIndicator.textContent = 'Loading game data...';
+document.querySelector('.game-content').prepend(elements.loadingIndicator);
+
+// Initialize audio settings
+function initAudio() {
+    audio.backgroundMusic.volume = 0.3;
+    audio.click.volume = 0.7;
+    audio.correct.volume = 0.7;
+    audio.wrong.volume = 0.7;
+    audio.levelComplete.volume = 0.8;
+    
+    elements.volumeControl.addEventListener('input', (e) => {
+        const volume = parseFloat(e.target.value);
+        audio.click.volume = volume;
+        audio.correct.volume = volume;
+        audio.wrong.volume = volume;
+        audio.levelComplete.volume = volume;
+    });
+}
+
 // Audio control functions
 function playSound(sound) {
     if (audio.isMusicOn) {
@@ -54,68 +78,15 @@ function playSound(sound) {
 
 function toggleMusic() {
     audio.isMusicOn = !audio.isMusicOn;
-    const musicBtn = document.getElementById('music-toggle');
     
     if (audio.isMusicOn) {
         audio.backgroundMusic.play();
-        musicBtn.innerHTML = '🔊';
+        elements.musicToggle.innerHTML = '🔊';
     } else {
         audio.backgroundMusic.pause();
-        musicBtn.innerHTML = '🔇';
+        elements.musicToggle.innerHTML = '🔇';
     }
 }
-
-// Add music toggle button to start screen
-const musicControls = document.createElement('div');
-musicControls.className = 'music-controls';
-musicControls.innerHTML = `
-    <button id="music-toggle" class="music-btn">🔊</button>
-`;
-document.body.appendChild(musicControls);
-
-document.getElementById('music-toggle').addEventListener('click', toggleMusic);
-
-function selectLetter(tile, index, letter) {
-    playSound(audio.click);
-    // ... rest of the existing code ...
-}
-
-function checkWord() {
-    playSound(audio.click); // Play click sound when checking word
-    
-    // ... existing code ...
-    
-    if (matchedWord) {
-        playSound(audio.correct); // Play correct sound
-        // ... rest of correct word handling ...
-    } else {
-        playSound(audio.wrong); // Play wrong sound
-        // ... rest of wrong word handling ...
-    }
-}
-
-function showLevelComplete(level) {
-    playSound(audio.levelComplete);
-    // ... rest of the existing code ...
-}
-
-function startLevelTimer() {
-    // Start background music (with user gesture)
-    if (audio.isMusicOn) {
-        audio.backgroundMusic.play().catch(e => console.log("Music play failed:", e));
-    }
-    // ... rest of existing code ...
-}
-
-audio.backgroundMusic.volume = 0.3;
-audio.click.volume = 0.7;
-audio.correct.volume = 0.7;
-// etc...
-
-// Initialize loading indicator
-elements.loadingIndicator.className = 'loading-indicator';
-elements.loadingIndicator.textContent = 'Loading game data...';
-document.querySelector('.game-container').prepend(elements.loadingIndicator);
 
 // Timer functions
 function startLevelTimer() {
@@ -127,40 +98,13 @@ function startLevelTimer() {
         gameData.levelTime = Math.floor((Date.now() - gameData.levelStartTime) / 1000);
         elements.timerDisplay.textContent = gameData.levelTime;
     }, 1000);
+    
+    // Start background music (with user gesture)
+    if (audio.isMusicOn) {
+        audio.backgroundMusic.play().catch(e => console.log("Music play failed:", e));
+    }
 }
 
-// Add this after your audio variable declarations
-function initAudio() {
-    // Set initial volumes
-    audio.backgroundMusic.volume = 0.3;
-    audio.click.volume = 0.7;
-    audio.correct.volume = 0.7;
-    audio.wrong.volume = 0.7;
-    audio.levelComplete.volume = 0.8;
-    
-    // Add volume control
-    const volumeControl = document.createElement('input');
-    volumeControl.type = 'range';
-    volumeControl.min = '0';
-    volumeControl.max = '1';
-    volumeControl.step = '0.1';
-    volumeControl.value = '0.7';
-    volumeControl.style.width = '80px';
-    volumeControl.style.marginLeft = '10px';
-    volumeControl.addEventListener('input', (e) => {
-        const volume = parseFloat(e.target.value);
-        audio.click.volume = volume;
-        audio.correct.volume = volume;
-        audio.wrong.volume = volume;
-        audio.levelComplete.volume = volume;
-    });
-    
-    const musicControls = document.querySelector('.music-controls');
-    musicControls.appendChild(volumeControl);
-}
-
-// Call this in your loadGameData function
-initAudio();
 function stopLevelTimer() {
     if (gameData.timerInterval) {
         clearInterval(gameData.timerInterval);
@@ -174,8 +118,8 @@ function calculateStarRating() {
     const wordCount = currentLevel.words.length;
     const averageTimePerWord = gameData.levelTime / wordCount;
     
-    if (averageTimePerWord <= 5) return 3;
-    if (averageTimePerWord <= 10) return 2;
+    if (averageTimePerWord <= 3.33) return 3;
+    if (averageTimePerWord <= 5) return 2;
     return 1;
 }
 
@@ -221,6 +165,84 @@ async function loadGameData() {
                     { word: "BEACH", clue: "Sandy shore by the ocean", definition: "A pebbly or sandy shore by the ocean." },
                     { word: "CLOUD", clue: "Floats in the sky", definition: "A visible mass of condensed water vapor." }
                 ]
+            },
+            {
+                level: 3,
+                words: [
+                    { word: "TIGER", clue: "Striped big cat", definition: "A large Asian wild cat with a striped coat." },
+                    { word: "HONEY", clue: "Sweet substance made by bees", definition: "A sweet, sticky substance made by bees." },
+                    { word: "WATER", clue: "Essential liquid for life", definition: "A colorless, transparent liquid that forms the world's streams, lakes, and oceans." },
+                    { word: "GRASS", clue: "Green ground cover", definition: "Vegetation consisting of short plants with narrow leaves." }
+                ]
+            },
+            {
+                level: 4,
+                words: [
+                    { word: "BANANA", clue: "Long yellow fruit", definition: "A long curved fruit with a yellow skin." },
+                    { word: "JUNGLE", clue: "Dense tropical forest", definition: "A dense, tropical forest with lush vegetation." },
+                    { word: "POCKET", clue: "Small compartment in clothing", definition: "A small bag-like attachment in clothing." },
+                    { word: "ROCKET", clue: "Space vehicle", definition: "A cylindrical projectile that can be propelled to great heights." }
+                ]
+            },
+            {
+                level: 5,
+                words: [
+                    { word: "ELEPHANT", clue: "Large gray mammal with trunk", definition: "A very large herbivorous mammal with a trunk." },
+                    { word: "HOSPITAL", clue: "Place for medical treatment", definition: "An institution providing medical treatment." },
+                    { word: "BUTTERFLY", clue: "Flying insect with colorful wings", definition: "A nectar-feeding insect with large wings." },
+                    { word: "MOUNTAIN", clue: "Tall natural elevation", definition: "A large natural elevation of the earth's surface." }
+                ]
+            },
+            {
+                level: 6,
+                words: [
+                    { word: "ASTRONAUT", clue: "Space traveler", definition: "A person trained to travel in a spacecraft." },
+                    { word: "TELEPHONE", clue: "Communication device", definition: "A system for transmitting voices over a distance." },
+                    { word: "ADVENTURE", clue: "Exciting experience", definition: "An unusual and exciting experience." },
+                    { word: "NOTEBOOK", clue: "Book for writing notes", definition: "A small book with blank pages for writing." },
+                    { word: "SUNFLOWER", clue: "Tall yellow flower", definition: "A tall plant with large yellow flowers." }
+                ]
+            },
+            {
+                level: 7,
+                words: [
+                    { word: "PHOTOGRAPH", clue: "Captured image", definition: "A picture made using a camera." },
+                    { word: "CHOCOLATE", clue: "Sweet brown treat", definition: "A food preparation made from roasted cacao seeds." },
+                    { word: "KANGAROO", clue: "Australian hopper", definition: "A large Australian marsupial with powerful hind legs." },
+                    { word: "UMBRELLA", clue: "Rain protection", definition: "A device used for protection against rain." },
+                    { word: "LIBRARY", clue: "Book collection place", definition: "A building or room containing collections of books." }
+                ]
+            },
+            {
+                level: 8,
+                words: [
+                    { word: "ARCHITECTURE", clue: "Building design", definition: "The art of designing buildings." },
+                    { word: "COMMUNICATION", clue: "Information exchange", definition: "The imparting or exchanging of information." },
+                    { word: "EXPERIMENT", clue: "Scientific test", definition: "A scientific procedure to make a discovery." },
+                    { word: "GEOGRAPHY", clue: "Study of Earth's features", definition: "The study of Earth's physical features." },
+                    { word: "HIBERNATION", clue: "Winter sleep", definition: "The condition of passing winter in a dormant state." }
+                ]
+            },
+            {
+                level: 9,
+                words: [
+                    { word: "MAGNIFICENT", clue: "Extremely beautiful", definition: "Extremely beautiful or impressive." },
+                    { word: "NEIGHBORHOOD", clue: "Local community area", definition: "A district or community within a town or city." },
+                    { word: "PERSPECTIVE", clue: "Point of view", definition: "A particular attitude toward something." },
+                    { word: "QUINTESSENCE", clue: "Perfect example", definition: "The most perfect or typical example of a quality." },
+                    { word: "REVOLUTION", clue: "Dramatic change", definition: "A forcible overthrow of a government or social order." }
+                ]
+            },
+            {
+                level: 10,
+                words: [
+                    { word: "EXTRAORDINARY", clue: "Very unusual", definition: "Very unusual or remarkable." },
+                    { word: "CONSEQUENTIAL", clue: "Important", definition: "Following as a result or effect." },
+                    { word: "BIBLIOGRAPHY", clue: "List of references", definition: "A list of books referred to in a scholarly work." },
+                    { word: "CONSTELLATION", clue: "Star pattern", definition: "A group of stars forming a recognizable pattern." },
+                    { word: "DETERMINATION", clue: "Firmness of purpose", definition: "The quality of being determined." },
+                    { word: "PHILANTHROPY", clue: "Charitable giving", definition: "The desire to promote the welfare of others." }
+                ]
             }
         ];
         
@@ -261,13 +283,12 @@ function loadLevel(levelIndex) {
 }
 
 // Create the letter grid
-// In your createLetterGrid function, add this:
 function createLetterGrid(level) {
     elements.letterGrid.innerHTML = '';
     
     // Calculate optimal columns based on word length
     const longestWord = Math.max(...level.words.map(w => w.word.length));
-    const columns = longestWord > 6 ? 6 : 5;
+    const columns = Math.min(6, Math.max(4, Math.ceil(longestWord * 0.8)));
     
     elements.letterGrid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
     
@@ -285,7 +306,10 @@ function createLetterGrid(level) {
             tile.style.display = 'none';
         }
         
-        tile.addEventListener('click', () => selectLetter(tile, index, letter));
+        tile.addEventListener('click', () => {
+            playSound(audio.click);
+            selectLetter(tile, index, letter);
+        });
         elements.letterGrid.appendChild(tile);
     });
 }
@@ -326,6 +350,7 @@ function selectLetter(tile, index, letter) {
 
 // Check if selected letters form a valid word
 function checkWord() {
+    playSound(audio.click);
     const selectedWord = gameData.selectedLetters.join('');
     const currentLevel = gameData.levels[gameData.currentLevel];
     
@@ -335,6 +360,7 @@ function checkWord() {
     );
     
     if (matchedWord) {
+        playSound(audio.correct);
         gameData.foundWords.push(matchedWord.word);
         
         gameData.selectedIndices.forEach(index => {
@@ -361,6 +387,7 @@ function checkWord() {
             setTimeout(() => showLevelComplete(currentLevel), 1000);
         }
     } else {
+        playSound(audio.wrong);
         gameData.selectedIndices.forEach(index => {
             const tile = document.querySelector(`.letter-tile[data-index="${index}"]`);
             tile.classList.add('incorrect');
@@ -371,6 +398,7 @@ function checkWord() {
 
 // Show level complete modal
 function showLevelComplete(level) {
+    playSound(audio.levelComplete);
     gameData.starRating = calculateStarRating();
     gameData.levelTimings.push({
         level: gameData.currentLevel + 1,
@@ -435,6 +463,7 @@ function shuffleArray(array) {
 }
 
 function provideHint() {
+    playSound(audio.click);
     const currentLevel = gameData.levels[gameData.currentLevel];
     const unfoundWords = currentLevel.words.filter(wordObj => 
         !gameData.foundWords.includes(wordObj.word)
@@ -458,6 +487,7 @@ function provideHint() {
 // Event Listeners
 elements.checkWordBtn.addEventListener('click', checkWord);
 elements.resetSelectionBtn.addEventListener('click', () => {
+    playSound(audio.click);
     gameData.selectedIndices.forEach(index => {
         const tile = document.querySelector(`.letter-tile[data-index="${index}"]`);
         tile.classList.remove('selected');
@@ -468,18 +498,25 @@ elements.resetSelectionBtn.addEventListener('click', () => {
 
 elements.hintBtn.addEventListener('click', provideHint);
 elements.nextLevelBtn.addEventListener('click', () => {
+    playSound(audio.click);
     elements.levelCompleteModal.style.display = 'none';
     gameData.currentLevel++;
     initGame();
 });
 elements.replayBtn.addEventListener('click', () => {
+    playSound(audio.click);
     elements.levelCompleteModal.style.display = 'none';
     initGame();
 });
 
 // Start game button
 elements.startGameBtn.addEventListener('click', () => {
+    playSound(audio.click);
     elements.startScreen.style.display = 'none';
     elements.gameScreen.style.display = 'block';
+    initAudio();
     loadGameData();
 });
+
+// Music toggle
+elements.musicToggle.addEventListener('click', toggleMusic);
