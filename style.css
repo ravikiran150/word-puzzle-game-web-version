@@ -78,13 +78,16 @@
 /* Game Container */
 .game-container {
     max-width: 600px;
+    max-height: 90vh; /* Limits container height */
     margin: 20px auto;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Adds scroll if content overflows */
+    display: flex;
+    flex-direction: column;
 }
-
 .game-header {
     text-align: center;
     margin-bottom: 20px;
@@ -146,9 +149,10 @@
 
 .letter-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     gap: 10px;
     margin-bottom: 20px;
+    min-height: 150px; /* Ensures space for controls */
 }
 
 .letter-tile {
@@ -208,7 +212,12 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: auto; /* Pushes to bottom */
+    padding-top: 20px;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    z-index: 10;
 }
 
 .btn {
@@ -365,16 +374,22 @@
 /* Responsive Design */
 @media (max-width: 600px) {
     .letter-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    }
+    
+    .letter-tile {
+        font-size: 18px;
     }
     
     .controls {
-        flex-direction: column;
+        flex-wrap: wrap;
     }
     
     .btn {
-        width: 100%;
+        padding: 8px 15px;
+        font-size: 14px;
     }
+}
 
     .level-info {
         flex-direction: column;
