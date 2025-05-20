@@ -3,38 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Puzzle Game</title>
+    <title>Categorized Word Puzzle</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Start Screen -->
-    <div id="start-screen" class="screen">
-        <div class="start-container">
-            <h1>Word Puzzle Game</h1>
-            <p>Form words from letters to complete each level!</p>
-            <div class="instructions">
-                <h3>How to Play:</h3>
-                <ol>
-                    <li>Select letters to form words matching the clues</li>
-                    <li>Click "Check Word" to submit your answer</li>
-                    <li>Complete all words to finish the level</li>
-                </ol>
-            </div>
-            <button id="start-game-btn" class="btn primary">Start Game</button>
-        </div>
-        <div class="music-controls">
-            <button id="music-toggle" class="music-btn">🔊</button>
-            <input type="range" min="0" max="1" step="0.1" value="0.7" class="volume-control">
+    <!-- Category Selection Screen -->
+    <div id="category-screen" class="screen">
+        <div class="category-container">
+            <h1>Select Category</h1>
+            <div class="categories-grid" id="categories-grid"></div>
         </div>
     </div>
 
     <!-- Game Screen -->
-    <div id="game-screen" class="screen" style="display: none;">
+    <div id="game-screen" class="screen" style="display:none">
         <div class="game-screen-container">
             <div class="game-content">
                 <header class="game-header">
-                    <h1>Word Puzzle</h1>
+                    <h1 id="category-title">Word Puzzle</h1>
                     <div class="level-info">
                         <div class="level-display">Level: <span id="current-level">1</span></div>
                         <div class="timer">Time: <span id="timer">0</span>s</div>
@@ -56,6 +43,7 @@
                     <button id="check-word" class="btn">Check Word</button>
                     <button id="reset-selection" class="btn">Reset</button>
                     <button id="hint-btn" class="btn hint-btn">Hint</button>
+                    <button id="back-to-categories" class="btn secondary">Change Category</button>
                 </div>
             </div>
         </div>
@@ -72,23 +60,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Audio Elements -->
-    <audio id="background-music" loop>
-        <source src="assets/sounds/background.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="click-sound">
-        <source src="assets/sounds/click.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="correct-sound">
-        <source src="assets/sounds/correct.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="wrong-sound">
-        <source src="assets/sounds/wrong.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="level-complete-sound">
-        <source src="assets/sounds/level-complete.mp3" type="audio/mpeg">
-    </audio>
 
     <script src="script.js"></script>
 </body>
